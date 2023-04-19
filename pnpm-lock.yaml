@@ -1,12 +1,21 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  konva:
+    specifier: ^9.0.1
+    version: 9.0.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-konva:
+    specifier: ^18.2.7
+    version: 18.2.7(konva@9.0.1)(react-dom@18.2.0)(react@18.2.0)
+  react-konva-utils:
+    specifier: ^1.0.4
+    version: 1.0.4(konva@9.0.1)(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
   '@types/react':
@@ -339,7 +348,6 @@ packages:
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: true
 
   /@types/react-dom@18.0.11:
     resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
@@ -347,17 +355,21 @@ packages:
       '@types/react': 18.0.28
     dev: true
 
+  /@types/react-reconciler@0.28.2:
+    resolution: {integrity: sha512-8tu6lHzEgYPlfDf/J6GOQdIc+gs+S2yAqlby3zTsB3SP2svlqTYe5fwZNtZyfactP74ShooP2vvi1BOp9ZemWw==}
+    dependencies:
+      '@types/react': 18.0.28
+    dev: false
+
   /@types/react@18.0.28:
     resolution: {integrity: sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
       csstype: 3.1.2
-    dev: true
 
   /@types/scheduler@0.16.3:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
-    dev: true
 
   /@vitejs/plugin-react-swc@3.0.0(vite@4.2.0):
     resolution: {integrity: sha512-vYlodz/mjYRbxMGbHzDgR8aPR+z8n7K/enWkyBGH096xrL2DIPCuTvQVRYPTXGyy6wO7OFiMxZ3r4nKQD1sH0A==}
@@ -372,7 +384,6 @@ packages:
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
-    dev: true
 
   /esbuild@0.17.17:
     resolution: {integrity: sha512-/jUywtAymR8jR4qsa2RujlAF7Krpt5VWi72Q2yuLD4e/hvtNcFQ0I1j8m/bxq238pf3/0KO5yuXNpuLx8BE1KA==}
@@ -429,8 +440,21 @@ packages:
       has: 1.0.3
     dev: true
 
+  /its-fine@1.1.0(react@18.2.0):
+    resolution: {integrity: sha512-nEoEt5EYSed1mmvwCRv3l1+6T7pyu4ltyBihzPjUtaSWhFhUPU/c7xkPDIutTh8FeIv0F1F5wOFYI8a2s5rlBA==}
+    peerDependencies:
+      react: '>=18.0'
+    dependencies:
+      '@types/react-reconciler': 0.28.2
+      react: 18.2.0
+    dev: false
+
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+    dev: false
+
+  /konva@9.0.1:
+    resolution: {integrity: sha512-wzpkprJ8idE42TDF9Lu9RNjVVYNXrj0apvTK3pujdHQhX1iNV+MUquSxYN8HqjYSG95QQ51jhFzRLWhnhf44Mw==}
     dev: false
 
   /loose-envify@1.4.0:
@@ -465,6 +489,47 @@ packages:
 
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      loose-envify: 1.4.0
+      react: 18.2.0
+      scheduler: 0.23.0
+    dev: false
+
+  /react-konva-utils@1.0.4(konva@9.0.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-K1J1K9MoVNGFrUxYt+dn7TUVqpppW3Y0fRcf42Ws1wzTQ2Od4qicCom9jnGxLiwh8zyhYaHAUn3hztgfTyYF7g==}
+    peerDependencies:
+      konva: ^8.3.5 || ^9.0.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      konva: 9.0.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-konva: 18.2.7(konva@9.0.1)(react-dom@18.2.0)(react@18.2.0)
+      use-image: 1.1.0(react-dom@18.2.0)(react@18.2.0)
+    dev: false
+
+  /react-konva@18.2.7(konva@9.0.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Q52ghaIR+2g3x14V5aIyt7VWNqPnWRotILo0Nj4YWVbNQisozrTJJ3/w68qb5Ar2fsYo7yXb4T6Nt4yZcGd2yg==}
+    peerDependencies:
+      konva: ^8.0.1 || ^7.2.5 || ^9.0.0
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    dependencies:
+      '@types/react-reconciler': 0.28.2
+      its-fine: 1.1.0(react@18.2.0)
+      konva: 9.0.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-reconciler: 0.29.0(react@18.2.0)
+      scheduler: 0.23.0
+    dev: false
+
+  /react-reconciler@0.29.0(react@18.2.0):
+    resolution: {integrity: sha512-wa0fGj7Zht1EYMRhKWwoo1H9GApxYLBuhoAuXN0TlltESAjDssB+Apf0T/DngVqaMyPypDmabL37vw/2aRM98Q==}
+    engines: {node: '>=0.10.0'}
     peerDependencies:
       react: ^18.2.0
     dependencies:
@@ -518,6 +583,16 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
+
+  /use-image@1.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-+cBHRR/44ZyMUS873O0vbVylgMM0AbdTunEplAWXvIQ2p69h2sIo2Qq74zeUsq6AMo+27e5lERQvXzd1crGiMg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /vite@4.2.0:
     resolution: {integrity: sha512-AbDTyzzwuKoRtMIRLGNxhLRuv1FpRgdIw+1y6AQG73Q5+vtecmvzKo/yk8X/vrHDpETRTx01ABijqUHIzBXi0g==}
