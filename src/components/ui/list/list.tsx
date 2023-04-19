@@ -12,7 +12,7 @@ type TList = {
 
 export const List: FC<TList> = ({children, y, height, x, width }) => {
     return (
-        <Group x={x} y={y}>
+        <Group draggable x={x} y={y}>
             <Rect width={width} height={height} stroke={'black'} strokeWidth={2}>
             </Rect>
             {children}
