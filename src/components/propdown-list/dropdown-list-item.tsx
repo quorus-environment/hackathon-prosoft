@@ -10,7 +10,7 @@ export const DropDownList: FC<IDropdownList> = ({DropdownList}) => {
     return (
         <div>
             {
-                Object.entries(DropdownList.NODES).map(([element, val]: any, index) =>
+                Object.entries(DropdownList).map(([element, val]: any, index) =>
                     <DropdownListItem
                         DropdownList={val}
                         key={index}

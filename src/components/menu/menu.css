@@ -1,0 +1,7 @@
+.menu {
+    max-height: 100vh;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    padding-right: 50px;
+}
