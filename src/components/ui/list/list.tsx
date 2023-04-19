@@ -7,12 +7,12 @@ type TList = {
     y: number
     width: number
     height: number
-    children: ReactElement | ReactElement[]
+    children: ReactElement | ReactElement[] | any
 }
 
 export const List: FC<TList> = ({children, y, height, x, width }) => {
     return (
-        <Group draggable x={x} y={y}>
+        <Group draggable={false} x={x} y={y}>
             <Rect width={width} height={height} stroke={'black'} strokeWidth={2}>
             </Rect>
             {children}

@@ -13,7 +13,22 @@ type TListItem = {
 
 export const ListItem: FC<TListItem> = ({text, width, height, y, x, align = "center"}) => {
     return (
-        <Group x={x} y={y}>
+        <Group onMouseEnter={e => {
+            const container = e.target?.getStage()?.container();
+            if (container) {
+                container.style.cursor = "pointer";
+            }
+        }}
+               onMouseLeave={e => {
+
+                   const container = e.target?.getStage()?.container();
+                   if (container) {
+                       container.style.cursor = "default";
+                   }
+               }} onClick={(e) => {
+                  console.log(text)
+               }} x={x} y={y}>
+
             <Rect width={width} height={height} stroke={'black'} strokeWidth={2}>
             </Rect>
             <Text
