@@ -11,9 +11,12 @@ const joins = {
 }
 
 export const App = () => {
+    const ref = React.useRef(null)
+    let position_second_control = {x: 2000 + 500, y: 1700 + 105}
+    React
+    const [coords, setCoords] = React.useState({x: 0, y: 0})
     let wr_coord_y = 0
     let line_coord_y = 0
-    React.useEffect(()=> {}, [])
 
     return (
         <Map>
@@ -63,6 +66,7 @@ export const App = () => {
                         <ListItem  align={'left'} text={"04"} width={500} height={70} y={70}/>
                         <ListItem  align={'left'} text={"05"} width={500} height={70} y={140}/>
                     </List>
+
                     <List x={420} y={2000} width={500} height={490}>
                         <ListItem text={'Server 10-04'} width={500} height={70} y={0}/>
                         <ListItem align={'left'} text={'280'} width={500} height={70} y={70}/>
@@ -73,11 +77,18 @@ export const App = () => {
                         <ListItem  align={'left'} text={"260"} width={500} height={70} y={420}/>
                     </List>
                 </Group>
-            </Layer>
-            <Layer>
-                <Group draggable={true} x={window.innerWidth} y={window.innerHeight}>
+                <Group  onDragMove={e => {
+                    const position = e.target.position();
+                    const stage = e.target.getStage();
+                    const pointerPosition = stage?.getPointerPosition();
+                    if (pointerPosition) {
+                        setCoords({x:  position.x , y: position.y })}}
+                    }
+
+                 draggable={true} x={coords.x} y={coords.y}>
                     <Rect width={3000} height={3000} stroke={'black'} strokeWidth={2}>
                     </Rect>
+
                     <Group draggy={0}
                            x={2400}
                            width={600}
@@ -129,6 +140,8 @@ export const App = () => {
                         <ListItem  align={'left'} text={"260"} width={500} height={70} y={420}/>
                     </List>
                 </Group>
+                <Line points={[0, 0, coords.x, coords.y]} stroke={'white'}
+                      strokeWidth={2}/>
             </Layer>
         </Map>
 
