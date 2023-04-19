@@ -1,7 +1,9 @@
-export const getClientNames = (client: any): any[] => {
-    const names: any[] = []
-    client.map((slave: any) => {
-        slave.points.map((point: any) => {
+import {TClient, TClientSlave, TSlavePoint} from "../models/client-models/client-models";
+
+export const getClientNames = (client: TClient): string[] => {
+    const names: string[] = []
+    client.slaves.map((slave: TClientSlave) => {
+        slave.points.map((point: TSlavePoint) => {
             names.push(point.name)
         })
     })
