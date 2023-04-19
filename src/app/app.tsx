@@ -11,17 +11,17 @@ const joins = {
 }
 
 export const App = () => {
-    const ref = React.useRef(null)
-    let position_second_control = {x: 2000 + 500, y: 1700 + 105}
-    React
-    const [coords, setCoords] = React.useState({x: 0, y: 0})
+    const [toCoords, setToCoords] = React.useState({x: 0, y: 0})
+    const [fromCoords, setFromCoords] = React.useState({x: 0, y: 0})
     let wr_coord_y = 0
     let line_coord_y = 0
 
     return (
         <Map>
             <Layer>
-                <Group draggable={true} x={window.innerWidth / 2} y={window.innerHeight / 2}>
+                <Group onDragMove={e => {
+                    const position = e.target.position();
+                    setFromCoords({x:  position.x , y: position.y })}} draggable={true} x={fromCoords.x} y={fromCoords.y}>
                     <Rect width={3000} height={3000} stroke={'black'} strokeWidth={2}>
                     </Rect>
                     <Group draggy={0}
@@ -79,13 +79,8 @@ export const App = () => {
                 </Group>
                 <Group  onDragMove={e => {
                     const position = e.target.position();
-                    const stage = e.target.getStage();
-                    const pointerPosition = stage?.getPointerPosition();
-                    if (pointerPosition) {
-                        setCoords({x:  position.x , y: position.y })}}
-                    }
-
-                 draggable={true} x={coords.x} y={coords.y}>
+                    setToCoords({x:  position.x , y: position.y })}}
+                 draggable={true} x={toCoords.x} y={toCoords.y}>
                     <Rect width={3000} height={3000} stroke={'black'} strokeWidth={2}>
                     </Rect>
 
@@ -140,8 +135,12 @@ export const App = () => {
                         <ListItem  align={'left'} text={"260"} width={500} height={70} y={420}/>
                     </List>
                 </Group>
-                <Line points={[0, 0, coords.x, coords.y]} stroke={'white'}
-                      strokeWidth={2}/>
+                { fromCoords.x > toCoords.x &&
+                    <Line points={[fromCoords.x + 400, fromCoords.y + 400, toCoords.x + 900, toCoords.y + 400]} stroke={'white'}
+                          strokeWidth={2}/>}
+                { fromCoords.x < toCoords.x &&
+                    <Line points={[fromCoords.x + 900, fromCoords.y + 400, toCoords.x + 400, toCoords.y + 400]} stroke={'white'}
+                          strokeWidth={2}/>}
             </Layer>
         </Map>
 
