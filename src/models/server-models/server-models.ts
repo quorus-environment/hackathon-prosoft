@@ -7,6 +7,7 @@ export type TServerPoint = {
 export type TServerMaster = {
     name: string
     ip: string
+    homeIP: string
     points: TServerPoint[]
 }
 
