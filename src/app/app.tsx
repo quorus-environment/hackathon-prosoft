@@ -53,14 +53,14 @@ export const App = () => {
                         </List>
                         <List x={1300} y={1100} width={500} height={70 * (joins.warehouse.length + 1)}>
                             <ListItem text={'Warehouse'} width={500} height={70} y={0}/>
-                            {joins.warehouse.map((element) =>  {
+                            {joins.warehouse.map((element, index) =>  {
                                 wr_coord_y = wr_coord_y + 70
-                                return <ListItem align={'left'} text={element} width={500} height={70} y={wr_coord_y}/>
+                                return <ListItem key={index} align={'left'} text={element} width={500} height={70} y={wr_coord_y}/>
                             })}
                         </List>
-                        {joins.warehouse.map((element) =>  {
+                        {joins.warehouse.map((element, index) =>  {
                             line_coord_y += 70
-                            return <Line points={[1300, 1135 + line_coord_y, 420+500, 2000+105]} stroke={'white'}
+                            return <Line key={index} points={[1300, 1135 + line_coord_y, 420+500, 2000+105]} stroke={'white'}
                                          strokeWidth={2}/>
                         })}
                         <List x={2000} y={1700} width={500} height={210}>

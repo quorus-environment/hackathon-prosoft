@@ -9,7 +9,7 @@ export const DropdownListItem: FC<IDropdownList> = ({DropdownList, name}) => {
         let arNodes: any[] = [];
         if (DropdownList) {
             if (typeof DropdownList === "string") {
-                arNodes.push(<h3>{DropdownList}</h3>)
+                arNodes.push(<h3 onClick={() => console.log("Вывод в канвас")}>{DropdownList}</h3>)
             }
             else if (DropdownList.length > 0) {
                 DropdownList.map((element: any, index: number) => {
