@@ -11,6 +11,21 @@ import {
   warehouse_objectsSecond,
 } from "../testJSONS/test-config-second"
 
+const joins = [
+  {
+    ip: "1",
+    warehouse: { ...warehouse_objects },
+    clients: [...clients],
+    server: [...server],
+  },
+  {
+    ip: "2",
+    warehouse: { ...warehouse_objectsSecond },
+    clients: [...clientsSecond],
+    server: [...serverSecond],
+  },
+]
+
 export const App = () => {
   const [contrCoords, setContrCoords] = useState([
     {
@@ -56,19 +71,24 @@ export const App = () => {
               const toControlObj = contrCoords.find(
                 (el) => element.ip === el.ip,
               )
-              const clientIndex = clients.findIndex(
+              const currentJoin =
+                joins[joins.findIndex((el) => el.ip === currentControl.ip)]
+              const clientIndex = currentJoin.clients.findIndex(
                 (name) => name === cl_obj[0].name,
               ) // clients - у каждого свой
-              const objClient = warehouse_objects.objects.filter(
+              const objClient = currentJoin.warehouse.objects.filter(
                 (element) => element.client.name === cl_obj[0].name,
               )
               const objClientIndex = objClient.findIndex(
                 (obj) => obj.client.cl_object === cl_obj[0].cl_object,
               ) // индекс объекта клиента
-              const serverIndex = server.findIndex(
+              const secondJoin =
+                joins[joins.findIndex((el) => el.ip === toControlObj?.ip)]
+              const serverIndex = secondJoin.server.findIndex(
                 (name) => name === cl_obj[1].name,
               )
-              const objServer = warehouse_objects.objects.filter(
+              console.log(serverIndex)
+              const objServer = secondJoin.warehouse.objects.filter(
                 (element) => element.server.name === cl_obj[1].name,
               )
               const objServerIndex = objServer.findIndex((obj) => {
@@ -87,7 +107,7 @@ export const App = () => {
                 x: CONST_CORDS.START_CLIENT.x + (toControlObj?.coords.x || 0),
                 y:
                   (toControlObj?.coords.y || 0) +
-                  clients.length * CONST_CORDS.BETWEEN_LISTS +
+                  currentJoin.clients.length * CONST_CORDS.BETWEEN_LISTS +
                   CONST_CORDS.BETWEEN_LISTS * serverIndex +
                   (objServerIndex + 1) * CONST_CORDS.HEIGHT_ITEM +
                   CONST_CORDS.HEIGHT_ITEM / 2,
@@ -108,22 +128,26 @@ export const App = () => {
           )
           return currentControl.links.map((element, index) => {
             return element.serverToClient.map((cl_obj) => {
+              const currentJoin =
+                joins[joins.findIndex((el) => el.ip === currentControl.ip)]
               const toControlObj = contrCoords.find(
                 (el) => element.ip === el.ip,
               )
-              const serverIndex = server.findIndex(
+              const serverIndex = currentJoin.server.findIndex(
                 (name) => name === cl_obj[0].name,
               ) // clients - у каждого свой
-              const objServer = warehouse_objects.objects.filter(
+              const objServer = currentJoin.warehouse.objects.filter(
                 (element) => element.server.name === cl_obj[0].name,
               )
               const objServerIndex = objServer.findIndex(
                 (obj) => obj.server.cl_object === cl_obj[0].cl_object,
               )
-              const clientIndex = clients.findIndex(
+              const secondJoin =
+                joins[joins.findIndex((el) => el.ip === toControlObj?.ip)]
+              const clientIndex = secondJoin.clients.findIndex(
                 (name) => name === cl_obj[1].name,
               )
-              const objClient = warehouse_objects.objects.filter(
+              const objClient = secondJoin.warehouse.objects.filter(
                 (element) => element.client.name === cl_obj[1].name,
               )
               const objClientIndex = objClient.findIndex((obj) => {
@@ -133,7 +157,7 @@ export const App = () => {
                 x: CONST_CORDS.START_CLIENT.x + (fromControlObj?.coords.x || 0),
                 y:
                   (fromControlObj?.coords.y || 0) +
-                  clients.length * CONST_CORDS.BETWEEN_LISTS +
+                  secondJoin.clients.length * CONST_CORDS.BETWEEN_LISTS +
                   CONST_CORDS.BETWEEN_LISTS * serverIndex +
                   (objServerIndex + 1) * CONST_CORDS.HEIGHT_ITEM +
                   CONST_CORDS.HEIGHT_ITEM / 2,
