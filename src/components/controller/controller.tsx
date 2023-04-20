@@ -3,7 +3,7 @@ import { Group, Line, Rect, Text } from "react-konva"
 import { List } from "../ui/list/list"
 import { ListItem } from "../ui/list-item/list-item"
 
-const CONST_CORDS = {
+export const CONST_CORDS = {
   LIST_WIDTH: 400,
   BETWEEN_CONTR: 1000,
   HEIGHT_ITEM: 70,

@@ -1,21 +1,10 @@
 import "./app.css"
-import { Group, Layer, Rect, Text, Line } from "react-konva"
+import { Layer, Line } from "react-konva"
 import React, { useState } from "react"
 import { Map } from "../components/map/map"
-import { ListItem } from "../components/ui/list-item/list-item"
-import { List } from "../components/ui/list/list"
 import { warehouse_objects, clients, server } from "../testJSONS/config-test"
-import { Controller } from "../components/controller/controller"
-
-let CONST_CORDS = {
-  LIST_WIDTH: 400,
-  BETWEEN_CONTR: 1000,
-  HEIGHT_ITEM: 70,
-  BETWEEN_LISTS: 650,
-  START_CLIENT: { x: 400, y: 400 },
-  START_SERVER: { x: 400 }, // y - высчитываем на основе количества клиентов
-  START_WAREHOUSE: { x: 2500, y: 1400 },
-}
+import { CONST_CORDS, Controller } from "../components/controller/controller"
+import { controllers } from "../testJSONS/config-connection"
 
 export const App = () => {
   const [contrCoords, setContrCoords] = useState([
@@ -53,30 +42,116 @@ export const App = () => {
           x={contrCoords?.find((el) => el.ip === "2")?.coords?.x || 0}
           y={contrCoords.find((el) => el.ip === "2")?.coords.y || 0}
         />
-        {/*{contrCoords[0].coords.x > contrCoords[1].coords.x && (*/}
-        <Line
-          points={[
-            contrCoords[0].coords.x + 400,
-            contrCoords[0].coords.y + 400,
-            contrCoords[1].coords.x + 900,
-            contrCoords[1].coords.y + 400,
-          ]}
-          stroke={"red"}
-          strokeWidth={10}
-        />
-        {/*)}*/}
-        {/*{fromCoords.x < toCoords.x && (*/}
-        {/*  <Line*/}
-        {/*    points={[*/}
-        {/*      fromCoords.x + 900,*/}
-        {/*      fromCoords.y + 400,*/}
-        {/*      toCoords.x + 400,*/}
-        {/*      toCoords.y + 400,*/}
-        {/*    ]}*/}
-        {/*    stroke={"red"}*/}
-        {/*    strokeWidth={10}*/}
-        {/*  />*/}
-        {/*)}*/}
+        {controllers.map((currentControl) => {
+          const fromControlObj = contrCoords.find(
+            (element) => element.ip === currentControl.ip,
+          )
+          return currentControl.links.map((element, index) => {
+            return element.clientToServer.map((cl_obj) => {
+              const toControlObj = contrCoords.find(
+                (el) => element.ip === el.ip,
+              )
+              const clientIndex = clients.findIndex(
+                (name) => name === cl_obj[0].name,
+              ) // clients - у каждого свой
+              const objClient = warehouse_objects.objects.filter(
+                (element) => element.client.name === cl_obj[0].name,
+              )
+              const objClientIndex = objClient.findIndex(
+                (obj) => obj.client.cl_object === cl_obj[0].cl_object,
+              ) // индекс объекта клиента
+              const serverIndex = server.findIndex(
+                (name) => name === cl_obj[1].name,
+              )
+              const objServer = warehouse_objects.objects.filter(
+                (element) => element.server.name === cl_obj[1].name,
+              )
+              const objServerIndex = objServer.findIndex((obj) => {
+                return obj.server.cl_object === cl_obj[1].cl_object
+              })
+              const fromCoords = {
+                x: CONST_CORDS.START_CLIENT.x + (fromControlObj?.coords.x || 0),
+                y:
+                  (fromControlObj?.coords.y || 0) +
+                  CONST_CORDS.START_CLIENT.y +
+                  CONST_CORDS.BETWEEN_LISTS * clientIndex +
+                  (objClientIndex + 1) * CONST_CORDS.HEIGHT_ITEM +
+                  CONST_CORDS.HEIGHT_ITEM / 2,
+              }
+              const toCoords = {
+                x: CONST_CORDS.START_CLIENT.x + (toControlObj?.coords.x || 0),
+                y:
+                  (toControlObj?.coords.y || 0) +
+                  clients.length * CONST_CORDS.BETWEEN_LISTS +
+                  CONST_CORDS.BETWEEN_LISTS * serverIndex +
+                  (objServerIndex + 1) * CONST_CORDS.HEIGHT_ITEM +
+                  CONST_CORDS.HEIGHT_ITEM / 2,
+              }
+              return (
+                <Line
+                  points={[fromCoords.x, fromCoords.y, toCoords.x, toCoords.y]}
+                  stroke={"red"}
+                  strokeWidth={10}
+                />
+              )
+            })
+          })
+        })}
+        {controllers.map((currentControl) => {
+          const fromControlObj = contrCoords.find(
+            (element) => element.ip === currentControl.ip,
+          )
+          return currentControl.links.map((element, index) => {
+            return element.serverToClient.map((cl_obj) => {
+              const toControlObj = contrCoords.find(
+                (el) => element.ip === el.ip,
+              )
+              const serverIndex = server.findIndex(
+                (name) => name === cl_obj[0].name,
+              ) // clients - у каждого свой
+              const objServer = warehouse_objects.objects.filter(
+                (element) => element.server.name === cl_obj[0].name,
+              )
+              const objServerIndex = objServer.findIndex(
+                (obj) => obj.server.cl_object === cl_obj[0].cl_object,
+              )
+              const clientIndex = clients.findIndex(
+                (name) => name === cl_obj[1].name,
+              )
+              const objClient = warehouse_objects.objects.filter(
+                (element) => element.client.name === cl_obj[1].name,
+              )
+              const objClientIndex = objClient.findIndex((obj) => {
+                return obj.server.cl_object === cl_obj[1].cl_object
+              })
+              const fromCoords = {
+                x: CONST_CORDS.START_CLIENT.x + (fromControlObj?.coords.x || 0),
+                y:
+                  (fromControlObj?.coords.y || 0) +
+                  clients.length * CONST_CORDS.BETWEEN_LISTS +
+                  CONST_CORDS.BETWEEN_LISTS * serverIndex +
+                  (objServerIndex + 1) * CONST_CORDS.HEIGHT_ITEM +
+                  CONST_CORDS.HEIGHT_ITEM / 2,
+              }
+              const toCoords = {
+                x: CONST_CORDS.START_CLIENT.x + (toControlObj?.coords.x || 0),
+                y:
+                  (toControlObj?.coords.y || 0) +
+                  CONST_CORDS.START_CLIENT.y +
+                  CONST_CORDS.BETWEEN_LISTS * clientIndex +
+                  (objClientIndex + 1) * CONST_CORDS.HEIGHT_ITEM +
+                  CONST_CORDS.HEIGHT_ITEM / 2,
+              }
+              return (
+                <Line
+                  points={[fromCoords.x, fromCoords.y, toCoords.x, toCoords.y]}
+                  stroke={"red"}
+                  strokeWidth={10}
+                />
+              )
+            })
+          })
+        })}
       </Layer>
     </Map>
   )
