@@ -178,7 +178,6 @@ export const Controller: FC<TController> = ({
         const indexServerObj = serverObjNames.findIndex(
           (obj) => obj.server.cl_object === element.server.cl_object,
         )
-        console.log(serverObjNames)
         const coordsServer = {
           x: CONST_CORDS.START_SERVER.x,
           y:
@@ -197,8 +196,8 @@ export const Controller: FC<TController> = ({
                 CONST_CORDS.HEIGHT_ITEM * (index + 1) +
                 CONST_CORDS.HEIGHT_ITEM / 2,
             ]}
-            stroke={"black"}
-            strokeWidth={2}
+            stroke={"green"}
+            strokeWidth={5}
           />
         )
       })}
@@ -233,8 +232,8 @@ export const Controller: FC<TController> = ({
                 CONST_CORDS.HEIGHT_ITEM * (index + 1) +
                 CONST_CORDS.HEIGHT_ITEM / 2,
             ]}
-            stroke={"black"}
-            strokeWidth={2}
+            stroke={"green"}
+            strokeWidth={5}
           />
         )
       })}
