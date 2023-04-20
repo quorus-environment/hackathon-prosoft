@@ -90,7 +90,7 @@ export const App = () => {
               return (
                 <Line
                   points={[fromCoords.x, fromCoords.y, toCoords.x, toCoords.y]}
-                  stroke={"red"}
+                  stroke={"blue"}
                   strokeWidth={10}
                 />
               )
@@ -145,7 +145,7 @@ export const App = () => {
               return (
                 <Line
                   points={[fromCoords.x, fromCoords.y, toCoords.x, toCoords.y]}
-                  stroke={"red"}
+                  stroke={"blue"}
                   strokeWidth={10}
                 />
               )

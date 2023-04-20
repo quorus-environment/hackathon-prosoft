@@ -1,12 +1,13 @@
 export const controllers = [
   {
-    ip: "1",
+    ip: "1", // ip контроллера
     links: [
       {
-        ip: "2",
+        ip: "2", // ip, с которым связь
         clientToServer: [
+          // первый - рассматриваемый котроллер, второй - следующий или предыдущий
           [
-            { name: "Client 104-01", cl_object: "777" },
+            { name: "Client 104-01", cl_object: "777" }, // массив кортежей двух элементов
             { name: "Server 104-01", cl_object: "777" },
           ],
         ],
