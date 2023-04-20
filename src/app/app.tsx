@@ -68,6 +68,7 @@ export const App = () => {
           )
           return currentControl.links.map((element, index) => {
             return element.clientToServer.map((cl_obj) => {
+              if (!cl_obj[0] || !cl_obj[1]) return null
               const toControlObj = contrCoords.find(
                 (el) => element.ip === el.ip,
               )
@@ -87,7 +88,7 @@ export const App = () => {
               const serverIndex = secondJoin.server.findIndex(
                 (name) => name === cl_obj[1].name,
               )
-              console.log(serverIndex)
+              console.log(serverIndex, "1232131321")
               const objServer = secondJoin.warehouse.objects.filter(
                 (element) => element.server.name === cl_obj[1].name,
               )
@@ -128,6 +129,7 @@ export const App = () => {
           )
           return currentControl.links.map((element, index) => {
             return element.serverToClient.map((cl_obj) => {
+              if (!cl_obj[0] || !cl_obj[1]) return null
               const currentJoin =
                 joins[joins.findIndex((el) => el.ip === currentControl.ip)]
               const toControlObj = contrCoords.find(
