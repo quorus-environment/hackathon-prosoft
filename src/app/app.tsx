@@ -4,6 +4,17 @@ import React from "react";
 import {Map} from "../components/map/map";
 import {ListItem} from "../components/ui/list-item/list-item";
 import {List} from "../components/ui/list/list";
+import {warehouse_objects, clients, server} from "../testJSONS/config-test";
+
+
+let CONST_CORDS = {
+    LIST_WIDTH: 400,
+    BETWEEN_CONTR: 1000,
+    HEIGHT_ITEM: 70,
+    BETWEEN_LISTS: 500,
+    START_CLIENT: {x: 400, y: 400},
+    START_SERVER: {x: 400, y: 2000}
+}
 
 const joins = {
     warehouse: ["DI-250", "DI-251", "DI-252", "DI-253"],
@@ -41,12 +52,20 @@ export const App = () => {
                             fontSize={100}
                         />
                     </Group>
-                    <List x={400} y={400}>
-                        <ListItem text={'Client 10-04'} width={500} height={70} y={0}/>
-                        {['280', "270", "290", "210", "240", "260"].map((el, i) => {
-                            return <ListItem align={'left'} text={el} width={500} height={70} y={(i+1)*70}/>
-                        })}
-                    </List>
+                    {clients.map((element, index) => {
+                        return <List x={CONST_CORDS.START_CLIENT.x} y={CONST_CORDS.START_CLIENT.y * (2 * -index)}>
+                            <ListItem text={element} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={0}/>
+                                {['280', "270", "290", "210"].map((el, i) => {
+                                    return <ListItem align={'left'} text={el} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={(i+1)*CONST_CORDS.HEIGHT_ITEM}/>
+                                })}
+                        </List>
+                    })}
+                    {/*<List x={400} y={400}>*/}
+                    {/*    <ListItem text={'Client 10-04'} width={500} height={70} y={0}/>*/}
+                    {/*    {['280', "270", "290", "210", "240", "260"].map((el, i) => {*/}
+                    {/*        return <ListItem align={'left'} text={el} width={500} height={70} y={(i+1)*70}/>*/}
+                    {/*    })}*/}
+                    {/*</List>*/}
                     <List x={1300} y={1100}>
                         <ListItem text={'Warehouse'} width={500} height={70} y={0}/>
                         {joins.warehouse.map((element) => {
