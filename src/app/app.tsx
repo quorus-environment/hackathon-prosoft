@@ -5,6 +5,11 @@ import { Map } from "../components/map/map"
 import { warehouse_objects, clients, server } from "../testJSONS/config-test"
 import { CONST_CORDS, Controller } from "../components/controller/controller"
 import { controllers } from "../testJSONS/config-connection"
+import {
+  clientsSecond,
+  serverSecond,
+  warehouse_objectsSecond,
+} from "../testJSONS/test-config-second"
 
 export const App = () => {
   const [contrCoords, setContrCoords] = useState([
@@ -35,9 +40,9 @@ export const App = () => {
           ip={"2"}
           contrCoords={contrCoords}
           setCoords={setContrCoords}
-          warehouseConfig={warehouse_objects}
-          serversConfig={server}
-          clientsConfig={clients}
+          warehouseConfig={warehouse_objectsSecond}
+          serversConfig={serverSecond}
+          clientsConfig={clientsSecond}
           title={"Aris-2"}
           x={contrCoords?.find((el) => el.ip === "2")?.coords?.x || 0}
           y={contrCoords.find((el) => el.ip === "2")?.coords.y || 0}
