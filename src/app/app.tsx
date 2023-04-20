@@ -11,21 +11,15 @@ let CONST_CORDS = {
     LIST_WIDTH: 400,
     BETWEEN_CONTR: 1000,
     HEIGHT_ITEM: 70,
-    BETWEEN_LISTS: 500,
+    BETWEEN_LISTS: 800,
     START_CLIENT: {x: 400, y: 400},
-    START_SERVER: {x: 400, y: 2000}
-}
-
-const joins = {
-    warehouse: ["DI-250", "DI-251", "DI-252", "DI-253"],
-    client: ["280"]
+    START_SERVER: {x: 400, y: 2000},
+    START_WAREHOUSE: {x: 2500, y: 1400}
 }
 
 export const App = () => {
     const [toCoords, setToCoords] = React.useState({x: 0, y: 0})
     const [fromCoords, setFromCoords] = React.useState({x: 0, y: 0})
-    let wr_coord_y = 0
-    let line_coord_y = 0
 
     return (
         <Map>
@@ -55,42 +49,46 @@ export const App = () => {
                     {clients.map((element, index) => {
                         return <List x={CONST_CORDS.START_CLIENT.x} y={CONST_CORDS.START_CLIENT.y * (2 * -index)}>
                             <ListItem text={element} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={0}/>
-                                {['280', "270", "290", "210"].map((el, i) => {
-                                    return <ListItem align={'left'} text={el} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={(i+1)*CONST_CORDS.HEIGHT_ITEM}/>
+                                {warehouse_objects.objects.filter(obj => obj.client.name == element).map((el, i) => {
+                                    return <ListItem align={'left'} text={el.client.cl_object} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={(i+1)*CONST_CORDS.HEIGHT_ITEM}/>
                                 })}
                         </List>
                     })}
-                    {/*<List x={400} y={400}>*/}
-                    {/*    <ListItem text={'Client 10-04'} width={500} height={70} y={0}/>*/}
-                    {/*    {['280', "270", "290", "210", "240", "260"].map((el, i) => {*/}
-                    {/*        return <ListItem align={'left'} text={el} width={500} height={70} y={(i+1)*70}/>*/}
-                    {/*    })}*/}
-                    {/*</List>*/}
-                    <List x={1300} y={1100}>
-                        <ListItem text={'Warehouse'} width={500} height={70} y={0}/>
-                        {joins.warehouse.map((element) => {
-                            wr_coord_y = wr_coord_y + 70
-                            return <ListItem align={'left'} text={element} width={500} height={70} y={wr_coord_y}/>
+                    {server.map((element, index) => {
+                        return <List x={CONST_CORDS.START_SERVER.x} y={CONST_CORDS.START_SERVER.y * (index + 1)}>
+                            <ListItem text={element} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={0}/>
+                            {warehouse_objects.objects.filter(obj => obj.server.name == element).map((el, i) => {
+                                return <ListItem align={'left'} text={el.client.cl_object} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={(i+1)*CONST_CORDS.HEIGHT_ITEM}/>
+                            })}
+                        </List>
+                    })}
+
+                    <List x={CONST_CORDS.START_WAREHOUSE.x} y={CONST_CORDS.START_WAREHOUSE.y}>
+                        <ListItem text={'Warehouse'} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={0}/>
+                        {warehouse_objects.objects.map((element, i) => {
+                            return <ListItem align={'left'} text={element.name} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={(i+1)*CONST_CORDS.HEIGHT_ITEM}/>
                         })}
                     </List>
-                    {joins.warehouse.map((element) => {
-                        line_coord_y += 70
-                        return <Line points={[1300, 1135 + line_coord_y, 420 + 500, 2000 + 105]} stroke={'white'}
+                    {/*линии от сервера до ядра*/}
+                    {warehouse_objects.objects.map((element, index) => {
+                        const serverName = element.server.name
+                        const indexServerName = server.findIndex((name) => name === serverName)
+                        const serverObjNames = warehouse_objects.objects.filter(element => element.server.name === serverName)
+                        const indexServerObj = serverObjNames.findIndex((obj) => obj.server.cl_object === element.server.cl_object)
+                        const coordsServer = {x: CONST_CORDS.START_SERVER.x, y: CONST_CORDS.START_SERVER.y * (indexServerName + 1)}
+                        return <Line points={[coordsServer.x + CONST_CORDS.LIST_WIDTH, coordsServer.y + (indexServerObj + 1) * CONST_CORDS.HEIGHT_ITEM + CONST_CORDS.HEIGHT_ITEM / 2, CONST_CORDS.START_WAREHOUSE.x, CONST_CORDS.START_WAREHOUSE.y + CONST_CORDS.HEIGHT_ITEM * (index + 1) + CONST_CORDS.HEIGHT_ITEM / 2]} stroke={'black'}
                                      strokeWidth={2}/>
                     })}
-                    <List x={2000} y={1700}>
-                        <ListItem text={'fbd t_me'} width={500} height={70} y={0}/>
-                        {["04","05"].map((el, i) => {
-                            return <ListItem align={'left'} text={el} width={500} height={70} y={(i+1)*70}/>
-                        })}
-                    </List>
-
-                    <List x={420} y={2000}>
-                        <ListItem text={'Server 10-04'} width={500} height={70} y={0}/>
-                        {['280', "270", "290", "210", "240", "260"].map((el, i) => {
-                            return <ListItem align={'left'} text={el} width={500} height={70} y={(i+1)*70}/>
-                        })}
-                    </List>
+                    {/*линии от клиента до ядра*/}
+                    {warehouse_objects.objects.map((element, index) => {
+                        const clientName = element.client.name
+                        const indexClientName = clients.findIndex((name) => name === clientName)
+                        const clientObjNames = warehouse_objects.objects.filter(element => element.client.name === clientName)
+                        const indexClientObj = clientObjNames.findIndex((obj) => obj.client.cl_object === element.client.cl_object)
+                        const coordsClient = {x: CONST_CORDS.START_CLIENT.x, y: CONST_CORDS.START_CLIENT.y * (-2 * (indexClientName))}
+                        return <Line points={[coordsClient.x + CONST_CORDS.LIST_WIDTH, coordsClient.y + (indexClientObj + 1) * CONST_CORDS.HEIGHT_ITEM + CONST_CORDS.HEIGHT_ITEM / 2, CONST_CORDS.START_WAREHOUSE.x, CONST_CORDS.START_WAREHOUSE.y + CONST_CORDS.HEIGHT_ITEM * (index + 1) + CONST_CORDS.HEIGHT_ITEM / 2]} stroke={'black'}
+                                     strokeWidth={2}/>
+                    })}
                 </Group>
                 <Group onDragMove={e => {
                     const position = e.target.position();

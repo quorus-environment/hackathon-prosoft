@@ -22,8 +22,8 @@ export const List: FC<TList> = ({children, y, x }) => {
     }, [children])
 
     return (
-        <Group  draggable={false} x={x} y={y}>
-            <Rect width={liWidth} height={length * liHeight} stroke={'black'} strokeWidth={2}>
+        <Group draggable={false} x={x} y={y}>
+            <Rect  width={liWidth} height={length * liHeight} stroke={'black'} strokeWidth={2}>
             </Rect>
             <Text text={`${length}`} width={100} fontSize={80}></Text>
             {children}
