@@ -13,7 +13,7 @@ let CONST_CORDS = {
     HEIGHT_ITEM: 70,
     BETWEEN_LISTS: 800,
     START_CLIENT: {x: 400, y: 400},
-    START_SERVER: {x: 400, y: 2000},
+    START_SERVER: {x: 400}, // y - высчитываем на основе количества клиентов
     START_WAREHOUSE: {x: 2500, y: 1400}
 }
 
@@ -28,7 +28,7 @@ export const App = () => {
                     const position = e.target.position();
                     setFromCoords({x: position.x, y: position.y})
                 }} draggable={true} x={fromCoords.x} y={fromCoords.y}>
-                    <Rect width={3000} height={3000} stroke={'black'} strokeWidth={2}>
+                    <Rect width={3000} height={(clients.length + 1 + server.length) * CONST_CORDS.BETWEEN_LISTS} stroke={'black'} strokeWidth={2}>
                     </Rect>
                     <Group draggy={0}
                            x={2400}
@@ -47,7 +47,7 @@ export const App = () => {
                         />
                     </Group>
                     {clients.map((element, index) => {
-                        return <List x={CONST_CORDS.START_CLIENT.x} y={CONST_CORDS.START_CLIENT.y * (2 * -index)}>
+                        return <List x={CONST_CORDS.START_CLIENT.x} y={CONST_CORDS.START_CLIENT.y + (CONST_CORDS.BETWEEN_LISTS *  index)}>
                             <ListItem text={element} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={0}/>
                                 {warehouse_objects.objects.filter(obj => obj.client.name == element).map((el, i) => {
                                     return <ListItem align={'left'} text={el.client.cl_object} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={(i+1)*CONST_CORDS.HEIGHT_ITEM}/>
@@ -55,7 +55,7 @@ export const App = () => {
                         </List>
                     })}
                     {server.map((element, index) => {
-                        return <List x={CONST_CORDS.START_SERVER.x} y={CONST_CORDS.START_SERVER.y * (index + 1)}>
+                        return <List x={CONST_CORDS.START_SERVER.x} y={(clients.length  + 1)* CONST_CORDS.BETWEEN_LISTS + (CONST_CORDS.BETWEEN_LISTS *  index)}>
                             <ListItem text={element} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={0}/>
                             {warehouse_objects.objects.filter(obj => obj.server.name == element).map((el, i) => {
                                 return <ListItem align={'left'} text={el.client.cl_object} width={CONST_CORDS.LIST_WIDTH} height={CONST_CORDS.HEIGHT_ITEM} y={(i+1)*CONST_CORDS.HEIGHT_ITEM}/>
@@ -75,7 +75,7 @@ export const App = () => {
                         const indexServerName = server.findIndex((name) => name === serverName)
                         const serverObjNames = warehouse_objects.objects.filter(element => element.server.name === serverName)
                         const indexServerObj = serverObjNames.findIndex((obj) => obj.server.cl_object === element.server.cl_object)
-                        const coordsServer = {x: CONST_CORDS.START_SERVER.x, y: CONST_CORDS.START_SERVER.y * (indexServerName + 1)}
+                        const coordsServer = {x: CONST_CORDS.START_SERVER.x, y: (clients.length  + 1)* CONST_CORDS.BETWEEN_LISTS + (CONST_CORDS.BETWEEN_LISTS *  indexServerName)}
                         return <Line points={[coordsServer.x + CONST_CORDS.LIST_WIDTH, coordsServer.y + (indexServerObj + 1) * CONST_CORDS.HEIGHT_ITEM + CONST_CORDS.HEIGHT_ITEM / 2, CONST_CORDS.START_WAREHOUSE.x, CONST_CORDS.START_WAREHOUSE.y + CONST_CORDS.HEIGHT_ITEM * (index + 1) + CONST_CORDS.HEIGHT_ITEM / 2]} stroke={'black'}
                                      strokeWidth={2}/>
                     })}
@@ -85,7 +85,7 @@ export const App = () => {
                         const indexClientName = clients.findIndex((name) => name === clientName)
                         const clientObjNames = warehouse_objects.objects.filter(element => element.client.name === clientName)
                         const indexClientObj = clientObjNames.findIndex((obj) => obj.client.cl_object === element.client.cl_object)
-                        const coordsClient = {x: CONST_CORDS.START_CLIENT.x, y: CONST_CORDS.START_CLIENT.y * (-2 * (indexClientName))}
+                        const coordsClient = {x: CONST_CORDS.START_CLIENT.x, y: CONST_CORDS.START_CLIENT.y + (CONST_CORDS.BETWEEN_LISTS *  indexClientName)}
                         return <Line points={[coordsClient.x + CONST_CORDS.LIST_WIDTH, coordsClient.y + (indexClientObj + 1) * CONST_CORDS.HEIGHT_ITEM + CONST_CORDS.HEIGHT_ITEM / 2, CONST_CORDS.START_WAREHOUSE.x, CONST_CORDS.START_WAREHOUSE.y + CONST_CORDS.HEIGHT_ITEM * (index + 1) + CONST_CORDS.HEIGHT_ITEM / 2]} stroke={'black'}
                                      strokeWidth={2}/>
                     })}
