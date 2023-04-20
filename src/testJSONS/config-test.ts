@@ -15,9 +15,4 @@ export const warehouse_objects = {
 }
 
 export const clients = ["Client 104-01", "Client 104-02"]
-export const server = [
-  "Server 104-01",
-  "Server 104-02",
-  "Server 104-01",
-  "Server 104-02",
-]
+export const server = ["Server 104-01", "Server 104-02"]

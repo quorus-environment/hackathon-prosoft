@@ -12,7 +12,7 @@ export const controllers = [
         ],
         serverToClient: [
           [
-            { name: "Server 104-01", cl_object: "777" },
+            { name: "Server 104-02", cl_object: "333" },
             { name: "Client 104-01", cl_object: "777" },
           ],
         ],

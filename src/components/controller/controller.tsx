@@ -135,7 +135,7 @@ export const Controller: FC<TController> = ({
                 return (
                   <ListItem
                     align={"left"}
-                    text={el.client.cl_object}
+                    text={el.server.cl_object}
                     width={CONST_CORDS.LIST_WIDTH}
                     height={CONST_CORDS.HEIGHT_ITEM}
                     y={(i + 1) * CONST_CORDS.HEIGHT_ITEM}
@@ -178,6 +178,7 @@ export const Controller: FC<TController> = ({
         const indexServerObj = serverObjNames.findIndex(
           (obj) => obj.server.cl_object === element.server.cl_object,
         )
+        console.log(serverObjNames)
         const coordsServer = {
           x: CONST_CORDS.START_SERVER.x,
           y:
