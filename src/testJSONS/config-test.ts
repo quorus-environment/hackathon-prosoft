@@ -4,7 +4,7 @@ export const warehouse_objects = {
         {
             name: "DI-909",
             client: {name: "Client 104-01", cl_object: "777"},
-            server: {name: "Server 104-01", cl_object: "333"},
+            server: {name: "Server 104-01", cl_object: "333"}
         },
         {
             name: "DI-808",
@@ -16,4 +16,4 @@ export const warehouse_objects = {
 
 
 export const clients = ["Client 104-01", "Client 104-02",]
-export const server = ["Server 104-01", "Server 104-02"]
+export const server = ["Server 104-01", "Server 104-02","Server 104-01", "Server 104-02"]
