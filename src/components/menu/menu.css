@@ -5,7 +5,7 @@
     left: 50px;
     padding-right: 50px;
     overflow-y: scroll;
-    background: black;
+    background: transparent;
 }
 
 .menu::-webkit-scrollbar {

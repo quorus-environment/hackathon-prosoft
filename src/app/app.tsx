@@ -1,4 +1,5 @@
 import "./app.css"
+import data from "../jsons/index.json"
 import { Layer, Line } from "react-konva"
 import React, { useEffect, useState } from "react"
 import { Map } from "../components/map/map"
@@ -27,6 +28,8 @@ import {
   serverFourth,
   warehouse_objectsFourth,
 } from "../testJSONS/fourth-config"
+import { DropDownList } from "../components/propdown-list/dropdown-list-item"
+import { Menu } from "../components/menu/menu"
 
 const joins = [
   {
@@ -88,36 +91,39 @@ export const App = () => {
 
   return (
     contrCoords && (
-      <Map>
-        <Layer>
-          {contrCoords.map((item: any) => {
-            const config = joins.find((v) => v.ip === item.ip)
-            return (
-              <Controller
-                ip={item.ip}
-                contrCoords={contrCoords}
-                setCoords={setContrCoords}
-                warehouseConfig={
-                  config?.warehouse as {
-                    ip: string
-                    objects: TWarehouseObject[]
+      <>
+        <Map>
+          <Layer>
+            {contrCoords.map((item: any) => {
+              const config = joins.find((v) => v.ip === item.ip)
+              return (
+                <Controller
+                  ip={item.ip}
+                  contrCoords={contrCoords}
+                  setCoords={setContrCoords}
+                  warehouseConfig={
+                    config?.warehouse as {
+                      ip: string
+                      objects: TWarehouseObject[]
+                    }
                   }
-                }
-                serversConfig={config?.server as string[]}
-                clientsConfig={config?.clients as string[]}
-                title={config?.title || ""}
-                x={item.coords?.x || 0}
-                y={item.coords?.y || 0}
-              />
-            )
-          })}
-          <Links
-            controllers={controllers}
-            joins={joins}
-            contrCoords={contrCoords}
-          />
-        </Layer>
-      </Map>
+                  serversConfig={config?.server as string[]}
+                  clientsConfig={config?.clients as string[]}
+                  title={config?.title || ""}
+                  x={item.coords?.x || 0}
+                  y={item.coords?.y || 0}
+                />
+              )
+            })}
+            <Links
+              controllers={controllers}
+              joins={joins}
+              contrCoords={contrCoords}
+            />
+          </Layer>
+        </Map>
+        <Menu />
+      </>
     )
   )
 }
