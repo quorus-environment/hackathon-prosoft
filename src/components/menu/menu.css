@@ -1,0 +1,13 @@
+.menu {
+    height: calc(100vh  - 100px) ;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    padding-right: 50px;
+    overflow-y: scroll;
+    background: black;
+}
+
+.menu::-webkit-scrollbar {
+    width: 0;
+}

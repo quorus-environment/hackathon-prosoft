@@ -1,0 +1,7 @@
+.panel-heading {
+    display: flex;
+    gap: 20px;
+}
+.panel {
+    margin-left: 40px;
+}
