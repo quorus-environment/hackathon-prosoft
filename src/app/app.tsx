@@ -5,6 +5,7 @@ import { Map } from "../components/map/map"
 import { warehouse_objects, clients, server } from "../testJSONS/config-test"
 import { CONST_CORDS, Controller } from "../components/controller/controller"
 import { controllers } from "../testJSONS/config-connection"
+import { testFunction } from "../utils/test-function"
 
 export const App = () => {
   const [contrCoords, setContrCoords] = useState([
@@ -17,6 +18,8 @@ export const App = () => {
       coords: { x: 2000, y: 2000 },
     },
   ])
+  const test = testFunction()
+  console.log(test)
   return (
     <Map>
       <Layer>
