@@ -15,6 +15,12 @@ import {
   warehouse_objectsSecond,
 } from "../testJSONS/test-config-second"
 import { Links } from "../components/links/links"
+import { testFunction } from "../utils/test-function"
+import {
+  clientsThird,
+  serverThird,
+  warehouse_objectsThird,
+} from "../testJSONS/third-controller/test-config-third"
 
 const joins = [
   {
@@ -29,13 +35,30 @@ const joins = [
     clients: [...clientsSecond],
     server: [...serverSecond],
   },
+  {
+    ip: "10.30.10.10",
+    warehouse: { ...warehouse_objectsThird },
+    clients: [...clientsThird],
+    server: [...serverThird],
+  },
 ]
 
 export const App = () => {
   const [contrCoords, setContrCoords] = useState<null | any>(null)
+  // const contrS = testFunction()
 
   useEffect(() => {
     const initialContrCoords = joins.map((el, i) => {
+      if (i % 2 === 0) {
+        return {
+          ip: el.ip,
+          coords: {
+            x: i * CONST_CORDS.BETWEEN_CONTR,
+            y: -CONST_CORDS.BETWEEN_CONTR,
+          },
+        }
+      }
+
       return {
         ip: el.ip,
         coords: {

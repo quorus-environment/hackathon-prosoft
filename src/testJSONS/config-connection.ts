@@ -41,4 +41,30 @@ export const controllers = [
       },
     ],
   },
+  {
+    ip: "10.30.10.10",
+    links: [
+      {
+        ip: "10.21.1212.1",
+        clientToServer: [
+          // первый - рассматриваемый котроллер, второй - следующий или предыдущий
+          [
+            { name: "Client 304-01", cl_object: "777" },
+            { name: "Server 104-02", cl_object: "333" },
+          ],
+        ],
+        serverToClient: [[]],
+      },
+      {
+        ip: "30.20.1040",
+        clientToServer: [],
+        serverToClient: [
+          [
+            { name: "Server 304-01", cl_object: "777" },
+            { name: "Client 204-02", cl_object: "333" },
+          ],
+        ],
+      },
+    ],
+  },
 ]
