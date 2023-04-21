@@ -39,6 +39,22 @@ export const controllers = [
           ],
         ],
       },
+      {
+        ip: "10.40.10.10", // ip, с которым связь
+        clientToServer: [
+          // первый - рассматриваемый котроллер, второй - следующий или предыдущий
+          [
+            { name: "Client 204-02", cl_object: "333" }, // массив кортежей двух элементов
+            { name: "Server 1404-01", cl_object: "555" },
+          ],
+        ],
+        serverToClient: [
+          [
+            { name: "Server 204-02", cl_object: "333" },
+            { name: "Client 1404-01", cl_object: "555" },
+          ],
+        ],
+      },
     ],
   },
   {
