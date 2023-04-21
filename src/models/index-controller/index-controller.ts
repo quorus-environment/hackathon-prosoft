@@ -1,5 +1,5 @@
-import {TClient, TClientSlave} from "../client-models/client-models";
 import {TServer} from "../server-models/server-models";
+import {TClient} from "../client-models/client-models";
 
 export type TIndexController = {
     controllers: Controller[]
