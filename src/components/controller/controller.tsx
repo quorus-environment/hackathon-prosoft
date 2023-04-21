@@ -5,7 +5,7 @@ import { ListItem } from "../ui/list-item/list-item"
 
 export const CONST_CORDS = {
   LIST_WIDTH: 400,
-  BETWEEN_CONTR: 1000,
+  BETWEEN_CONTR: 4000,
   HEIGHT_ITEM: 70,
   BETWEEN_LISTS: 650,
   START_CLIENT: { x: 400, y: 400 },
@@ -13,18 +13,18 @@ export const CONST_CORDS = {
   START_WAREHOUSE: { x: 2500, y: 1400 },
 }
 
-type TWarehouseObject = {
+export type TWarehouseObject = {
   name: string
   client: { name: string; cl_object: string }
   server: { name: string; cl_object: string }
 }
 
-type TContrCoord = {
+export type TContrCoord = {
   ip: string
   coords: { x: number; y: number }
 }
 
-type TController = {
+export type TController = {
   contrCoords: TContrCoord[]
   setCoords: (obj: TContrCoord[]) => void
   warehouseConfig: { ip: string; objects: TWarehouseObject[] }
