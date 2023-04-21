@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { CONST_CORDS } from "../controller/controller"
-import { Line } from "react-konva"
+import { Arrow, Line } from "react-konva"
 
 type TlinkCell = [
   { name: string; cl_object: string },
