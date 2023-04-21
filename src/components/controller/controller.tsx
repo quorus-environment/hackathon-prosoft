@@ -4,9 +4,9 @@ import { List } from "../ui/list/list"
 import { ListItem } from "../ui/list-item/list-item"
 
 export const CONST_CORDS = {
-  LIST_WIDTH: 400,
+  LIST_WIDTH: 800,
   BETWEEN_CONTR: 4000,
-  HEIGHT_ITEM: 70,
+  HEIGHT_ITEM: 100,
   BETWEEN_LISTS: 650,
   START_CLIENT: { x: 400, y: 400 },
   START_SERVER: { x: 400 }, // y - высчитываем на основе количества клиентов
@@ -64,7 +64,7 @@ export const Controller: FC<TController> = ({
       y={y}
     >
       <Rect
-        width={3000}
+        width={3500}
         height={
           (clientsConfig.length + 1 + serversConfig.length) *
           CONST_CORDS.BETWEEN_LISTS
@@ -72,7 +72,7 @@ export const Controller: FC<TController> = ({
         stroke={"black"}
         strokeWidth={2}
       ></Rect>
-      <Group draggy={0} x={2400} width={600}>
+      <Group draggy={0} x={2900} width={600}>
         <Rect width={600} height={180} stroke={"black"} strokeWidth={2}></Rect>
         <Text
           y={30}
@@ -80,6 +80,7 @@ export const Controller: FC<TController> = ({
           stroke={"black"}
           text={title}
           fill={"black"}
+          fontFamily={"Montserrat"}
           align={"center"}
           fontSize={100}
         />
@@ -148,7 +149,7 @@ export const Controller: FC<TController> = ({
 
       <List x={CONST_CORDS.START_WAREHOUSE.x} y={CONST_CORDS.START_WAREHOUSE.y}>
         <ListItem
-          text={"Warehouse"}
+          text={"Configuration"}
           width={CONST_CORDS.LIST_WIDTH}
           height={CONST_CORDS.HEIGHT_ITEM}
           y={0}
