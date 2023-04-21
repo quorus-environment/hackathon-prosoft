@@ -1,0 +1,393 @@
+{
+  "controllers": [
+    {
+      "info": {
+        "name": "ARIS-4238",
+        "IPADDR": "10.2.13.38"
+      },
+      "req": {
+        "slaves": [
+          {
+            "name": "Клиент 104-01",
+            "ip": "10.2.13.57",
+            "points": [
+              {
+                "name": "DI-254",
+                "address": "30001"
+              },
+              {
+                "name": "DI-255",
+                "address": "30002"
+              },
+              {
+                "name": "DI-256",
+                "address": "30003"
+              },
+              {
+                "name": "DI-257",
+                "address": "30004"
+              },
+              {
+                "name": "DI-258",
+                "address": "30005"
+              },
+              {
+                "name": "DI-259",
+                "address": "30006"
+              },
+              {
+                "name": "DI-260",
+                "address": "30007"
+              },
+              {
+                "name": "DI-261",
+                "address": "30008"
+              },
+              {
+                "name": "DI-262",
+                "address": "30009"
+              },
+              {
+                "name": "DI-263",
+                "address": "30010"
+              }
+            ]
+          }
+        ]
+      },
+      "serv": {
+        "masters": []
+      },
+      "warehouse": {
+        "points": [
+          {
+            "name": "DI-254",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-255",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-256",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-257",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-258",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-259",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-260",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-261",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-262",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-263",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-264",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-265",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-266",
+            "client": "Клиент 104-01"
+          }
+        ],
+        "formuls": []
+      }
+    },
+    {
+      "info": {
+        "name": "ARIS-4254",
+        "IPADDR": "10.2.13.54"
+      },
+      "req": {
+        "slaves": [
+          {
+            "name": "Клиент 104-01",
+            "ip": "10.2.13.60",
+            "points": [
+              {
+                "name": "DI-256",
+                "address": "1001"
+              },
+              {
+                "name": "DI-257",
+                "address": "1002"
+              },
+              {
+                "name": "DI-258",
+                "address": "1003"
+              },
+              {
+                "name": "DI-259",
+                "address": "1004"
+              },
+              {
+                "name": "DI-260",
+                "address": "1005"
+              },
+              {
+                "name": "DI-261",
+                "address": "1006"
+              },
+              {
+                "name": "DI-262",
+                "address": "1007"
+              },
+              {
+                "name": "DI-263",
+                "address": "1008"
+              },
+              {
+                "name": "DI-264",
+                "address": "1009"
+              },
+              {
+                "name": "DI-265",
+                "address": "1010"
+              }
+            ]
+          }
+        ]
+      },
+      "serv": {
+        "masters": [
+          {
+            "name": "Сервер 104-01",
+            "ip": "10.2.13.38",
+            "homeIP": "10.2.13.38",
+            "points": [
+              {
+                "name": "DI-256",
+                "client": "Клиент 104-01",
+                "address": "30001"
+              },
+              {
+                "name": "DI-257",
+                "client": "Клиент 104-01",
+                "address": "30002"
+              },
+              {
+                "name": "DI-258",
+                "client": "Клиент 104-01",
+                "address": "30003"
+              },
+              {
+                "name": "DI-259",
+                "client": "Клиент 104-01",
+                "address": "30004"
+              },
+              {
+                "name": "DI-260",
+                "client": "Клиент 104-01",
+                "address": "30005"
+              },
+              {
+                "name": "DI-261",
+                "client": "Клиент 104-01",
+                "address": "30006"
+              },
+              {
+                "name": "DI-262",
+                "client": "Клиент 104-01",
+                "address": "30007"
+              },
+              {
+                "name": "DI-263",
+                "client": "Клиент 104-01",
+                "address": "30008"
+              },
+              {
+                "name": "DI-264",
+                "client": "Клиент 104-01",
+                "address": "30009"
+              },
+              {
+                "name": "DI-265",
+                "client": "Клиент 104-01",
+                "address": "30010"
+              }
+            ]
+          }
+        ]
+      },
+      "warehouse": {
+        "points": [
+          {
+            "name": "DI-256",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-257",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-258",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-259",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-260",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-261",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-262",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-263",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-264",
+            "client": "Клиент 104-01"
+          },
+          {
+            "name": "DI-265",
+            "client": "Клиент 104-01"
+          }
+        ],
+        "formuls": [
+          {
+            "name": "DI-707",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-257",
+                "client": "Клиент 104-01"
+              }
+            ]
+          },
+          {
+            "name": "DI-708",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-258",
+                "client": "Клиент 104-01"
+              }
+            ]
+          },
+          {
+            "name": "DI-709",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-259",
+                "client": "Клиент 104-01"
+              }
+            ]
+          },
+          {
+            "name": "DI-710",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-260",
+                "client": "Клиент 104-01"
+              }
+            ]
+          },
+          {
+            "name": "DI-711",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-261",
+                "client": "Клиент 104-01"
+              }
+            ]
+          },
+          {
+            "name": "DI-712",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-262",
+                "client": "Клиент 104-01"
+              }
+            ]
+          },
+          {
+            "name": "DI-713",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-263",
+                "client": "Клиент 104-01"
+              }
+            ]
+          },
+          {
+            "name": "DI-714",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-264",
+                "client": "Клиент 104-01"
+              }
+            ]
+          },
+          {
+            "name": "DI-715",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-265",
+                "client": "Клиент 104-01"
+              }
+            ]
+          },
+          {
+            "name": "DI-716",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-266",
+                "client": "Клиент 104-01"
+              }
+            ]
+          },
+          {
+            "name": "DI-717",
+            "client": "Virtual_01",
+            "ref": [
+              {
+                "name": "DI-267",
+                "client": "Клиент 104-01"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
