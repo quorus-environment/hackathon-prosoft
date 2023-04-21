@@ -22,24 +22,40 @@ import {
   warehouse_objectsThird,
 } from "../testJSONS/third-controller/test-config-third"
 
+import {
+  clientsFourth,
+  serverFourth,
+  warehouse_objectsFourth,
+} from "../testJSONS/fourth-config"
+
 const joins = [
   {
     ip: "10.21.1212.1",
     warehouse: { ...warehouse_objects },
     clients: [...clients],
     server: [...server],
+    title: "Aris-1",
   },
   {
     ip: "30.20.1040",
     warehouse: { ...warehouse_objectsSecond },
     clients: [...clientsSecond],
     server: [...serverSecond],
+    title: "Aris-2",
   },
   {
     ip: "10.30.10.10",
     warehouse: { ...warehouse_objectsThird },
     clients: [...clientsThird],
     server: [...serverThird],
+    title: "Aris-3",
+  },
+  {
+    ip: "10.40.10.10",
+    warehouse: { ...warehouse_objectsFourth },
+    clients: [...clientsFourth],
+    server: [...serverFourth],
+    title: "Aris-4",
   },
 ]
 
@@ -89,34 +105,12 @@ export const App = () => {
                 }
                 serversConfig={config?.server as string[]}
                 clientsConfig={config?.clients as string[]}
-                title={"Aris-1"}
+                title={config?.title || ""}
                 x={item.coords?.x || 0}
                 y={item.coords?.y || 0}
               />
             )
           })}
-          {/*<Controller*/}
-          {/*  ip={"1"}*/}
-          {/*  contrCoords={contrCoords}*/}
-          {/*  setCoords={setContrCoords}*/}
-          {/*  warehouseConfig={warehouse_objects}*/}
-          {/*  serversConfig={server}*/}
-          {/*  clientsConfig={clients}*/}
-          {/*  title={"Aris-1"}*/}
-          {/*  x={contrCoords?.find((el: any) => el.ip === "1")?.coords?.x || 0}*/}
-          {/*  y={contrCoords?.find((el: any) => el.ip === "1")?.coords.y || 0}*/}
-          {/*/>*/}
-          {/*<Controller*/}
-          {/*  ip={"2"}*/}
-          {/*  contrCoords={contrCoords}*/}
-          {/*  setCoords={setContrCoords}*/}
-          {/*  warehouseConfig={warehouse_objectsSecond}*/}
-          {/*  serversConfig={serverSecond}*/}
-          {/*  clientsConfig={clientsSecond}*/}
-          {/*  title={"Aris-2"}*/}
-          {/*  x={contrCoords?.find((el: any) => el.ip === "2")?.coords?.x || 0}*/}
-          {/*  y={contrCoords.find((el: any) => el.ip === "2")?.coords.y || 0}*/}
-          {/*/>*/}
           <Links
             controllers={controllers}
             joins={joins}
